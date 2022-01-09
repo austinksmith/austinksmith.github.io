@@ -141,6 +141,10 @@ nav a:hover {
     padding: 5px;
 }
 
+.hamster-icon {
+    content: U+1442D !important;
+}
+
 .main h1 {
     color: #ffffff;
     font-size: 52px;
