@@ -27,6 +27,9 @@
         <button id="invertBtn">Invert</button>
         <button id="brightnessBtn">Brightness</button>
         <button id="blurBtn">Blur</button>
+        <button id="edgeDetectionBtn">Edge Detection</button>
+        <button id="autoEnhanceBtn">Auto Enhance</button>
+        <button id="upscaleBtn">Upscale to 4K</button>
     </div>
 
     <script>
@@ -44,65 +47,170 @@
         };
         img.src = imgBase64;
 
-        function applyFilter(filter) {
-            let imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
-            let data = imageData.data;
+        function applyGrayscale() {
+            const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+            const data = imageData.data;
 
-            switch (filter) {
-                case 'grayscale':
-                    for (let i = 0; i < data.length; i += 4) {
-                        let avg = (data[i] + data[i + 1] + data[i + 2]) / 3;
-                        data[i] = data[i + 1] = data[i + 2] = avg;
-                    }
-                    break;
-                case 'sepia':
-                    for (let i = 0; i < data.length; i += 4) {
-                        let r = data[i];
-                        let g = data[i + 1];
-                        let b = data[i + 2];
-                        data[i] = r * 0.393 + g * 0.769 + b * 0.189;
-                        data[i + 1] = r * 0.349 + g * 0.686 + b * 0.168;
-                        data[i + 2] = r * 0.272 + g * 0.534 + b * 0.131;
-                    }
-                    break;
-                case 'invert':
-                    for (let i = 0; i < data.length; i += 4) {
-                        data[i] = 255 - data[i];
-                        data[i + 1] = 255 - data[i + 1];
-                        data[i + 2] = 255 - data[i + 2];
-                    }
-                    break;
-                case 'brightness':
-                    let brightness = 50; // Brightness level from -255 to 255
-                    for (let i = 0; i < data.length; i += 4) {
-                        data[i] += brightness;
-                        data[i + 1] += brightness;
-                        data[i + 2] += brightness;
-                    }
-                    break;
-                case 'blur':
-                    ctx.globalAlpha = 0.5;
-                    for (let y = -5; y <= 5; y += 2) {
-                        for (let x = -5; x <= 5; x += 2) {
-                            ctx.drawImage(canvas, x, y);
-                            if (x >= 0 && y >= 0) {
-                                ctx.drawImage(canvas, -(x - 1), -(y - 1));
-                            }
-                        }
-                    }
-                    ctx.globalAlpha = 1.0;
-                    return;
+            for (let i = 0; i < data.length; i += 4) {
+                const avg = (data[i] + data[i + 1] + data[i + 2]) / 3;
+                data[i] = data[i + 1] = data[i + 2] = avg;
             }
 
             ctx.putImageData(imageData, 0, 0);
         }
 
-        // Button click event listeners remain the same
-        document.getElementById('grayscaleBtn').onclick = () => applyFilter('grayscale');
-        document.getElementById('sepiaBtn').onclick = () => applyFilter('sepia');
-        document.getElementById('invertBtn').onclick = () => applyFilter('invert');
-        document.getElementById('brightnessBtn').onclick = () => applyFilter('brightness');
-        document.getElementById('blurBtn').onclick = () => applyFilter('blur');
+        function applySepia() {
+            const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+            const data = imageData.data;
+
+            for (let i = 0; i < data.length; i += 4) {
+                const r = data[i];
+                const g = data[i + 1];
+                const b = data[i + 2];
+                data[i] = r * 0.393 + g * 0.769 + b * 0.189;
+                data[i + 1] = r * 0.349 + g * 0.686 + b * 0.168;
+                data[i + 2] = r * 0.272 + g * 0.534 + b * 0.131;
+            }
+
+            ctx.putImageData(imageData, 0, 0);
+        }
+
+        function applyInvert() {
+            const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+            const data = imageData.data;
+
+            for (let i = 0; i < data.length; i += 4) {
+                data[i] = 255 - data[i];
+                data[i + 1] = 255 - data[i + 1];
+                data[i + 2] = 255 - data[i + 2];
+            }
+
+            ctx.putImageData(imageData, 0, 0);
+        }
+
+        function applyBrightness() {
+            const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+            const data = imageData.data;
+            const brightness = 50; // Brightness level from -255 to 255
+
+            for (let i = 0; i < data.length; i += 4) {
+                data[i] += brightness;
+                data[i + 1] += brightness;
+                data[i + 2] += brightness;
+            }
+
+            ctx.putImageData(imageData, 0, 0);
+        }
+
+        function applyBlur() {
+            ctx.globalAlpha = 0.5;
+            for (let y = -5; y <= 5; y += 2) {
+                for (let x = -5; x <= 5; x += 2) {
+                    ctx.drawImage(canvas, x, y);
+                    if (x >= 0 && y >= 0) {
+                        ctx.drawImage(canvas, -(x - 1), -(y - 1));
+                    }
+                }
+            }
+            ctx.globalAlpha = 1.0;
+        }
+
+        function applyEdgeDetection() {
+            const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+            const data = imageData.data;
+            const width = canvas.width;
+            const height = canvas.height;
+
+            // Edge detection kernel
+            const kernel = [
+                [-1, -1, -1],
+                [-1,  8, -1],
+                [-1, -1, -1]
+            ];
+
+            // Apply convolution
+            for (let y = 1; y < height - 1; y++) {
+                for (let x = 1; x < width - 1; x++) {
+                    let sumR = 0, sumG = 0, sumB = 0;
+                    for (let ky = -1; ky <= 1; ky++) {
+                        for (let kx = -1; kx <= 1; kx++) {
+                            const pos = ((y + ky) * width + (x + kx)) * 4;
+                            const weight = kernel[ky + 1][kx + 1];
+                            sumR += data[pos] * weight;
+                            sumG += data[pos + 1] * weight;
+                            sumB += data[pos + 2] * weight;
+                        }
+                    }
+                    const pos = (y * width + x) * 4;
+                    data[pos] = clamp(sumR, 0, 255);
+                    data[pos + 1] = clamp(sumG, 0, 255);
+                    data[pos + 2] = clamp(sumB, 0, 255);
+                }
+            }
+        }
+
+        function applyAutoEnhance() {
+            const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+            const data = imageData.data;
+            const numPixels = data.length / 4;
+            let sumR = 0, sumG = 0, sumB = 0;
+
+            // Calculate average color values
+            for (let i = 0; i < data.length; i += 4) {
+                sumR += data[i];
+                sumG += data[i + 1];
+                sumB += data[i + 2];
+            }
+            const avgR = sumR / numPixels;
+            const avgG = sumG / numPixels;
+            const avgB = sumB / numPixels;
+
+            // Calculate standard deviation
+            let diffR = 0, diffG = 0, diffB = 0;
+            for (let i = 0; i < data.length; i += 4) {
+                diffR += Math.pow(data[i] - avgR, 2);
+                diffG += Math.pow(data[i + 1] - avgG, 2);
+                diffB += Math.pow(data[i + 2] - avgB, 2);
+            }
+            const stdDevR = Math.sqrt(diffR / numPixels);
+            const stdDevG = Math.sqrt(diffG / numPixels);
+            const stdDevB = Math.sqrt(diffB / numPixels);
+
+            // Adjust contrast
+            const contrastFactor = 128;
+            for (let i = 0; i < data.length; i += 4) {
+                data[i] = clamp((data[i] - avgR) * (contrastFactor / stdDevR) + avgR, 0, 255);
+                data[i + 1] = clamp((data[i + 1] - avgG) * (contrastFactor / stdDevG) + avgG, 0, 255);
+                data[i + 2] = clamp((data[i + 2] - avgB) * (contrastFactor / stdDevB) + avgB, 0, 255);
+            }
+
+            ctx.putImageData(imageData, 0, 0);
+        }
+
+        function upscaleTo4K() {
+            const scale = 2; // Upscale factor
+            const originalWidth = canvas.width;
+            const originalHeight = canvas.height;
+            canvas.width = originalWidth * scale;
+            canvas.height = originalHeight * scale;
+            ctx.drawImage(img, 0, 0, originalWidth, originalHeight, 0, 0, canvas.width, canvas.height);
+        }
+
+        // Clamp function to limit values between min and max
+        function clamp(value, min, max) {
+            return Math.min(Math.max(value, min), max);
+        }
+
+        // Button click event listeners
+        document.getElementById('grayscaleBtn').onclick = applyGrayscale;
+        document.getElementById('sepiaBtn').onclick = applySepia;
+        document.getElementById('invertBtn').onclick = applyInvert;
+        document.getElementById('brightnessBtn').onclick = applyBrightness;
+        document.getElementById('blurBtn').onclick = applyBlur;
+        document.getElementById('edgeDetectionBtn').onclick = applyEdgeDetection;
+        document.getElementById('autoEnhanceBtn').onclick = applyAutoEnhance;
+        document.getElementById('upscaleBtn').onclick = upscaleTo4K;
     </script>
 </body>
 </html>
+
