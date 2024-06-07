@@ -1390,6 +1390,80 @@ document.addEventListener('DOMContentLoaded', function() {
         ctx.putImageData(imageData, 0, 0);
     }
 
+    // Retro Film Effect
+    function applyRetroFilmEffect() {
+        const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+        const data = imageData.data;
+
+        // Apply color grading
+        applyColorGrading(data);
+
+        // Add noise
+        applyNoise(data);
+
+        // Apply vignetting
+        applyVignette(data);
+
+        // Apply light leaks
+        applyLightLeaks(data);
+
+        ctx.putImageData(imageData, 0, 0);
+    }
+
+    // Apply color grading
+    function applyColorGrading(data) {
+        for (let i = 0; i < data.length; i += 4) {
+            // Apply color shifts for vintage look
+            data[i] += 10; // Red
+            data[i + 1] -= 5; // Green
+            data[i + 2] -= 10; // Blue
+        }
+    }
+
+    // Add noise
+    function applyNoise(data) {
+        const noiseIntensity = 20; // Adjust noise intensity
+        for (let i = 0; i < data.length; i += 4) {
+            const randomOffset = noiseIntensity * (Math.random() - 0.5);
+            data[i] += randomOffset; // Red channel
+            data[i + 1] += randomOffset; // Green channel
+            data[i + 2] += randomOffset; // Blue channel
+        }
+    }
+
+    // Apply vignetting
+    function applyVignette(data) {
+        const centerX = canvas.width / 2;
+        const centerY = canvas.height / 2;
+        const maxDistance = Math.sqrt(centerX ** 2 + centerY ** 2);
+        for (let y = 0; y < canvas.height; y++) {
+            for (let x = 0; x < canvas.width; x++) {
+                const idx = (y * canvas.width + x) * 4;
+                const distance = Math.sqrt((x - centerX) ** 2 + (y - centerY) ** 2);
+                const vignette = 1 - distance / maxDistance; // Linear falloff
+                data[idx] *= vignette; // Red channel
+                data[idx + 1] *= vignette; // Green channel
+                data[idx + 2] *= vignette; // Blue channel
+            }
+        }
+    }
+
+    // Apply light leaks
+    function applyLightLeaks(data) {
+        const leakIntensity = 40; // Adjust intensity of light leaks
+        const leakColor = { r: 255, g: 218, b: 185 }; // Light leak color (peach)
+        for (let y = 0; y < canvas.height; y++) {
+            for (let x = 0; x < canvas.width; x++) {
+                const idx = (y * canvas.width + x) * 4;
+                const leakAmount = Math.random() * leakIntensity;
+                data[idx] += leakAmount * leakColor.r / 255; // Red channel
+                data[idx + 1] += leakAmount * leakColor.g / 255; // Green channel
+                data[idx + 2] += leakAmount * leakColor.b / 255; // Blue channel
+            }
+        }
+    }
+
+
     // Button click event listeners
     document.getElementById('grayscaleBtn').onclick = processImage(applyGrayscale);
     document.getElementById('sepiaBtn').onclick = processImage(applySepia);
@@ -1435,6 +1509,7 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('textureSynthesisBtn').onclick = processImage(applyTextureSynthesis);
     document.getElementById('colorTemperatureBtn').onclick = processImage(applyColorTemperature);
     document.getElementById('gradientOverlayBtn').onclick = processImage(applyGradientOverlay);
+    document.getElementById('retroFilmBtn').onclick = processImage(applyRetroFilmEffect);
 
 
 
