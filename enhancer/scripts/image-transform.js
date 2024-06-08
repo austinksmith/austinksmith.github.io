@@ -1463,6 +1463,150 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
+    function applyUnderwaterEffect() {
+        const radius = 2; // Radius of the blur effect
+        const sigma = 1.0; // Standard deviation for Gaussian blur
+    
+        const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+        const data = imageData.data;
+        const width = canvas.width;
+        const height = canvas.height;
+        
+        // Apply Gaussian blur
+        const outputData = new Uint8ClampedArray(data);
+        const halfSize = Math.floor(radius / 2);
+        let sum = 0;
+        for (let y = -halfSize; y <= halfSize; y++) {
+            for (let x = -halfSize; x <= halfSize; x++) {
+                const value = Math.exp(-(x * x + y * y) / (2 * sigma * sigma));
+                sum += value;
+            }
+        }
+    
+        // Normalize the kernel
+        const kernel = new Array(radius * radius).fill(0).map((_, index) => {
+            const y = Math.floor(index / radius) - halfSize;
+            const x = (index % radius) - halfSize;
+            const value = Math.exp(-(x * x + y * y) / (2 * sigma * sigma));
+            return value / sum;
+        });
+    
+        // Apply Gaussian blur
+        for (let y = 0; y < height; y++) {
+            for (let x = 0; x < width; x++) {
+                let r = 0, g = 0, b = 0;
+                for (let ky = -halfSize; ky <= halfSize; ky++) {
+                    for (let kx = -halfSize; kx <= halfSize; kx++) {
+                        const nx = Math.min(width - 1, Math.max(0, x + kx));
+                        const ny = Math.min(height - 1, Math.max(0, y + ky));
+                        const weight = kernel[(ky + halfSize) * radius + (kx + halfSize)];
+                        const index = (ny * width + nx) * 4;
+                        r += data[index];
+                        g += data[index + 1];
+                        b += data[index + 2];
+                    }
+                }
+                const index = (y * width + x) * 4;
+                outputData[index] = r / (radius * radius);
+                outputData[index + 1] = g / (radius * radius);
+                outputData[index + 2] = b / (radius * radius);
+                outputData[index + 3] = data[index + 3]; // Keep alpha channel unchanged
+            }
+        }
+    
+        // Update image data with blurred data
+        for (let i = 0; i < data.length; i += 4) {
+            data[i] = outputData[i];
+            data[i + 1] = outputData[i + 1];
+            data[i + 2] = outputData[i + 2];
+        }
+    
+        ctx.putImageData(imageData, 0, 0);
+    }
+    
+    function applyFisheye() {
+        const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+        const data = imageData.data;
+        const centerX = canvas.width / 2;
+        const centerY = canvas.height / 2;
+        const radius = Math.sqrt(centerX * centerX + centerY * centerY);
+    
+        for (let y = 0; y < canvas.height; y++) {
+            for (let x = 0; x < canvas.width; x++) {
+                const dx = x - centerX;
+                const dy = y - centerY;
+                const distance = Math.sqrt(dx * dx + dy * dy);
+                const angle = Math.atan2(dy, dx);
+                const normalizedRadius = Math.pow(distance / radius, 2);
+    
+                const nx = Math.round(centerX + Math.cos(angle) * normalizedRadius * radius);
+                const ny = Math.round(centerY + Math.sin(angle) * normalizedRadius * radius);
+    
+                // Check if the new coordinates are within the bounds of the canvas
+                if (nx >= 0 && ny >= 0 && nx < canvas.width && ny < canvas.height) {
+                    const idx = (ny * canvas.width + nx) * 4;
+                    const srcIdx = (y * canvas.width + x) * 4;
+                    data[srcIdx] = data[idx];
+                    data[srcIdx + 1] = data[idx + 1];
+                    data[srcIdx + 2] = data[idx + 2];
+                }
+            }
+        }
+    
+        ctx.putImageData(imageData, 0, 0);
+    }     
+    
+    
+    function applyDreamyEffect() {
+        const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+        const data = imageData.data;
+        const amount = 0.1; // Adjust the amount of dreaminess
+    
+        // Apply dreamy effect logic
+        for (let i = 0; i < data.length; i += 4) {
+            // Apply softening effect by blending nearby pixels
+            const averageR = (data[i - 4] + data[i] + data[i + 4]) / 3;
+            const averageG = (data[i - 3] + data[i + 1] + data[i + 5]) / 3;
+            const averageB = (data[i - 2] + data[i + 2] + data[i + 6]) / 3;
+    
+            // Apply the dreamy effect by blending colors
+            data[i] += (averageR - data[i]) * amount;
+            data[i + 1] += (averageG - data[i + 1]) * amount;
+            data[i + 2] += (averageB - data[i + 2]) * amount;
+        }
+    
+        ctx.putImageData(imageData, 0, 0);
+    }
+    
+    function applyDuotoneEffect(color1, color2) {
+        const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+        const data = imageData.data;
+    
+        for (let i = 0; i < data.length; i += 4) {
+            // Convert to grayscale
+            const gray = (data[i] + data[i + 1] + data[i + 2]) / 3;
+            data[i] = (gray * (color1[0] / 255)) + ((255 - gray) * (color2[0] / 255));
+            data[i + 1] = (gray * (color1[1] / 255)) + ((255 - gray) * (color2[1] / 255));
+            data[i + 2] = (gray * (color1[2] / 255)) + ((255 - gray) * (color2[2] / 255));
+        }
+    
+        ctx.putImageData(imageData, 0, 0);
+    }
+    
+    function applyGlitchEffect() {
+        const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+        const data = imageData.data;
+    
+        // Apply glitch effect logic
+        for (let i = 0; i < data.length; i += 4) {
+            // Introduce random noise or distortions
+            data[i] = Math.random() * 255; // Randomize red channel
+            data[i + 1] = Math.random() * 255; // Randomize green channel
+            data[i + 2] = Math.random() * 255; // Randomize blue channel
+        }
+    
+        ctx.putImageData(imageData, 0, 0);
+    }
 
     // Button click event listeners
     document.getElementById('grayscaleBtn').onclick = processImage(applyGrayscale);
@@ -1510,10 +1654,11 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('colorTemperatureBtn').onclick = processImage(applyColorTemperature);
     document.getElementById('gradientOverlayBtn').onclick = processImage(applyGradientOverlay);
     document.getElementById('retroFilmBtn').onclick = processImage(applyRetroFilmEffect);
-
-
-
-
+    document.getElementById('underwaterEffectBtn').onclick = applyUnderwaterEffect;
+    // New filters and buttons
+    document.getElementById('dreamyEffectBtn').onclick = processImage(applyDreamyEffect);
+    document.getElementById('glitchEffectBtn').onclick = processImage(applyGlitchEffect);
+    document.getElementById('fisheyeBtn').onclick = processImage(applyFisheye);
 
 });
 
