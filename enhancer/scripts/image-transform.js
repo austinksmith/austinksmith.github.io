@@ -1022,36 +1022,37 @@ document.addEventListener('DOMContentLoaded', function() {
         ctx.putImageData(imageData, 0, 0);
     }
 
-    // Watercolor Effect
     function applyWatercolor() {
         const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
         const data = imageData.data;
         const radius = 2; // Adjust the radius for the effect
-
+    
         // Apply watercolor effect
         for (let y = 0; y < canvas.height; y++) {
             for (let x = 0; x < canvas.width; x++) {
                 let r = 0, g = 0, b = 0, count = 0;
-                for (let dy = -radius; dy <= radius; dy++) {
-                    for (let dx = -radius; dx <= radius; dx++) {
-                        const nx = Math.min(canvas.width - 1, Math.max(0, x + dx));
-                        const ny = Math.min(canvas.height - 1, Math.max(0, y + dy));
-                        const index = (ny * canvas.width + nx) * 4;
-                        r += data[index];
-                        g += data[index + 1];
-                        b += data[index + 2];
-                        count++;
-                    }
-                }
+    
+                // Introduce some randomness by selecting random samples within the radius
+                const randomX = x + Math.floor(Math.random() * radius * 2) - radius;
+                const randomY = y + Math.floor(Math.random() * radius * 2) - radius;
+    
+                const nx = Math.min(canvas.width - 1, Math.max(0, randomX));
+                const ny = Math.min(canvas.height - 1, Math.max(0, randomY));
+                const index = (ny * canvas.width + nx) * 4;
+                r = data[index];
+                g = data[index + 1];
+                b = data[index + 2];
+                count++;
+    
                 const currentIndex = (y * canvas.width + x) * 4;
-                data[currentIndex] = r / count; // Average red value
-                data[currentIndex + 1] = g / count; // Average green value
-                data[currentIndex + 2] = b / count; // Average blue value
+                data[currentIndex] = r; // Assign red value
+                data[currentIndex + 1] = g; // Assign green value
+                data[currentIndex + 2] = b; // Assign blue value
             }
         }
-
+    
         ctx.putImageData(imageData, 0, 0);
-    }
+    }    
 
     // Cartoonize
     function applyCartoonize() {
@@ -1598,17 +1599,27 @@ document.addEventListener('DOMContentLoaded', function() {
     function applyGlitchEffect() {
         const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
         const data = imageData.data;
+        const width = canvas.width;
+        const height = canvas.height;
     
         // Apply glitch effect logic
-        for (let i = 0; i < data.length; i += 4) {
-            // Introduce random noise or distortions
-            data[i] = Math.random() * 255; // Randomize red channel
-            data[i + 1] = Math.random() * 255; // Randomize green channel
-            data[i + 2] = Math.random() * 255; // Randomize blue channel
+        for (let y = 0; y < height; y++) {
+            if (Math.random() > 0.9) { // Randomly decide to glitch this row
+                const offset = Math.floor(Math.random() * 40) - 20; // Random horizontal shift
+    
+                for (let x = 0; x < width; x++) {
+                    const pixelIndex = (y * width + x) * 4;
+                    const shiftedIndex = (y * width + ((x + offset + width) % width)) * 4;
+    
+                    data[pixelIndex] = data[shiftedIndex];
+                    data[pixelIndex + 1] = data[shiftedIndex + 1];
+                    data[pixelIndex + 2] = data[shiftedIndex + 2];
+                }
+            }
         }
     
         ctx.putImageData(imageData, 0, 0);
-    }
+    }    
 
     // Button click event listeners
     document.getElementById('grayscaleBtn').onclick = processImage(applyGrayscale);
