@@ -1126,31 +1126,30 @@ document.addEventListener('DOMContentLoaded', function() {
 
         ctx.putImageData(imageData, 0, 0);
     }
-
-    // Lens Blur
+    
     function applyLensBlur() {
         const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
         const data = imageData.data;
         const radius = 5; // Radius of the blur effect
         const centerX = canvas.width / 2; // X coordinate of the center of the blur
         const centerY = canvas.height / 2; // Y coordinate of the center of the blur
-
+    
         // Iterate through each pixel
         for (let y = 0; y < canvas.height; y++) {
             for (let x = 0; x < canvas.width; x++) {
                 let totalRed = 0, totalGreen = 0, totalBlue = 0, totalAlpha = 0;
                 let count = 0;
-
+    
                 // Iterate through pixels in the circular kernel
                 for (let ky = -radius; ky <= radius; ky++) {
                     for (let kx = -radius; kx <= radius; kx++) {
                         const nx = x + kx;
                         const ny = y + ky;
-
+    
                         // Check if the pixel is within the canvas bounds
                         if (nx >= 0 && nx < canvas.width && ny >= 0 && ny < canvas.height) {
                             const distance = Math.sqrt((nx - centerX) ** 2 + (ny - centerY) ** 2);
-
+    
                             // Apply blur only within the radius
                             if (distance <= radius) {
                                 const idx = (ny * canvas.width + nx) * 4;
@@ -1163,13 +1162,13 @@ document.addEventListener('DOMContentLoaded', function() {
                         }
                     }
                 }
-
+    
                 // Average the pixel values within the circular kernel
                 const avgRed = totalRed / count;
                 const avgGreen = totalGreen / count;
                 const avgBlue = totalBlue / count;
                 const avgAlpha = totalAlpha / count;
-
+    
                 // Update pixel with averaged color
                 const idx = (y * canvas.width + x) * 4;
                 data[idx] = avgRed;
@@ -1178,9 +1177,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 data[idx + 3] = avgAlpha;
             }
         }
-
+    
         ctx.putImageData(imageData, 0, 0);
-    }
+    }    
 
 
     // Motion Blur
@@ -1406,7 +1405,7 @@ document.addEventListener('DOMContentLoaded', function() {
         applyNoise(data);
 
         // Apply vignetting
-        applyVignette(data);
+        applyVignette2(data);
 
         // Apply light leaks
         applyLightLeaks(data);
@@ -1436,7 +1435,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Apply vignetting
-    function applyVignette(data) {
+    function applyVignette2(data) {
         const centerX = canvas.width / 2;
         const centerY = canvas.height / 2;
         const maxDistance = Math.sqrt(centerX ** 2 + centerY ** 2);
@@ -1564,37 +1563,23 @@ document.addEventListener('DOMContentLoaded', function() {
         const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
         const data = imageData.data;
         const amount = 0.1; // Adjust the amount of dreaminess
+        const strength = 1.5; // Adjust the strength of the effect
     
         // Apply dreamy effect logic
         for (let i = 0; i < data.length; i += 4) {
             // Apply softening effect by blending nearby pixels
-            const averageR = (data[i - 4] + data[i] + data[i + 4]) / 3;
-            const averageG = (data[i - 3] + data[i + 1] + data[i + 5]) / 3;
-            const averageB = (data[i - 2] + data[i + 2] + data[i + 6]) / 3;
+            const averageR = (data[i - 4] + data[i] + data[i + 4]) / 3 || data[i];
+            const averageG = (data[i - 3] + data[i + 1] + data[i + 5]) / 3 || data[i + 1];
+            const averageB = (data[i - 2] + data[i + 2] + data[i + 6]) / 3 || data[i + 2];
     
-            // Apply the dreamy effect by blending colors
-            data[i] += (averageR - data[i]) * amount;
-            data[i + 1] += (averageG - data[i + 1]) * amount;
-            data[i + 2] += (averageB - data[i + 2]) * amount;
+            // Apply the dreamy effect by blending colors with strength and amount
+            data[i] += (averageR - data[i]) * amount * strength;
+            data[i + 1] += (averageG - data[i + 1]) * amount * strength;
+            data[i + 2] += (averageB - data[i + 2]) * amount * strength;
         }
     
         ctx.putImageData(imageData, 0, 0);
-    }
-    
-    function applyDuotoneEffect(color1, color2) {
-        const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
-        const data = imageData.data;
-    
-        for (let i = 0; i < data.length; i += 4) {
-            // Convert to grayscale
-            const gray = (data[i] + data[i + 1] + data[i + 2]) / 3;
-            data[i] = (gray * (color1[0] / 255)) + ((255 - gray) * (color2[0] / 255));
-            data[i + 1] = (gray * (color1[1] / 255)) + ((255 - gray) * (color2[1] / 255));
-            data[i + 2] = (gray * (color1[2] / 255)) + ((255 - gray) * (color2[2] / 255));
-        }
-    
-        ctx.putImageData(imageData, 0, 0);
-    }
+    }    
     
     function applyGlitchEffect() {
         const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
