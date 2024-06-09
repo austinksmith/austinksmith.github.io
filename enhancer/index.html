@@ -8,51 +8,72 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         .container {
-            max-width: 90%; /* Limit container width to 90% */
+            max-width: 90%;
+            position: relative; /* Add relative positioning for the container */
         }
         canvas {
             display: block;
             margin: 0 auto;
-            border: 1px solid black;
-            max-width: 100%; /* Ensure canvas doesn't overflow container */
+            border: 10px solid #ccc; /* Photo frame effect */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Shadow effect */
+            max-width: 100%;
         }
         #buttons {
-            text-align: center;
-            margin-top: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+        }
+        #buttons .btn {
+            flex: 1 0 12%; /* Each button takes 12% width of its container */
+            margin: 5px;
+        }
+        #fileInput {
+            width: 50%;
+            margin: 0 auto;
         }
         #loadingSpinner {
             position: absolute;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            z-index: 10;
+            z-index: 20;
+        }
+        .spinner-border {
+            color: #17a2b8; /* Vibrant color */
+        }
+        #loadingOverlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.8); /* Semi-transparent background */
+            z-index: 15;
+            display: none; /* Hidden by default */
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <!-- Canvas where the image will be rendered -->
         <canvas id="renderCanvas"></canvas>
         <br />
-        <!-- Loading Spinner -->
+        <div id="loadingOverlay"></div> <!-- Background layer to cover buttons while loading -->
         <div id="loadingSpinner" class="d-none text-center">
             <div class="spinner-border" role="status">
                 <span class="visually-hidden">Loading...</span>
             </div>
         </div>
         <br />
-        <!-- File upload field -->
         <div class="input-group mt-3">
             <input type="file" id="fileInput" class="form-control" accept="image/*">
         </div>
         <br />
-        <!-- Save button -->
         <div id="saveBtnContainer" class="mt-3 text-center">
             <button id="saveBtn" class="btn btn-success">Save Image</button>
             <button id="resetBtn" class="btn btn-warning">Reset Image</button>
         </div>
         <br />
-        <!-- Buttons to apply transformations -->
         <div id="buttons" class="mt-3">
             <button id="grayscaleBtn" class="btn btn-primary">Grayscale</button>
             <button id="sepiaBtn" class="btn btn-primary">Sepia</button>
@@ -63,57 +84,41 @@
             <button id="autoEnhanceBtn" class="btn btn-primary">Auto Enhance</button>
             <button id="upscaleBtn" class="btn btn-primary">Upscale to 4K</button>
             <button id="sharpenBtn" class="btn btn-primary">Sharpen</button>
-        </div>
-        <div id="buttons" class="mt-3">
             <button id="vignetteBtn" class="btn btn-primary">Vignette</button>
             <button id="posterizeBtn" class="btn btn-primary">Posterize</button>
             <button id="oilPaintBtn" class="btn btn-primary">Oil Paint</button>
             <button id="contrastBtn" class="btn btn-primary">Contrast</button>
             <button id="saturationBtn" class="btn btn-primary">Saturation</button>
-        </div>
-        <div id="buttons" class="mt-3">
             <button id="hueRotationBtn" class="btn btn-primary">Hue Rotation</button>
             <button id="gammaCorrectionBtn" class="btn btn-primary">Gamma Correction</button>
             <button id="pixelateBtn" class="btn btn-primary">Pixelate</button>
             <button id="gaussianBlurBtn" class="btn btn-primary">Gaussian Blur</button>
             <button id="solarizeBtn" class="btn btn-primary">Solarize</button>
-        </div>
-        <div id="buttons" class="mt-3">
             <button id="embossBtn" class="btn btn-primary">Emboss</button>
             <button id="thresholdingBtn" class="btn btn-primary">Thresholding</button>
             <button id="colorizeBtn" class="btn btn-primary">Colorize</button>
             <button id="thresholdBlurBtn" class="btn btn-primary">Threshold Blur</button>
             <button id="edgeEnhanceBtn" class="btn btn-primary">Edge Enhance</button>
-        </div>
-        <div id="buttons" class="mt-3">
             <button id="redChannelBtn" class="btn btn-primary">Red Channel</button>
             <button id="greenChannelBtn" class="btn btn-primary">Green Channel</button>
             <button id="blueChannelBtn" class="btn btn-primary">Blue Channel</button>
             <button id="smoothBtn" class="btn btn-primary">Smooth</button>
             <button id="noiseReductionBtn" class="btn btn-primary">Noise Reduction</button>
-        </div>
-        <div id="buttons" class="mt-3">
             <button id="histogramEqualizationBtn" class="btn btn-primary">Histogram Equalization</button>
             <button id="gradientMapBtn" class="btn btn-primary">Gradient Map</button>
             <button id="watercolorBtn" class="btn btn-primary">Watercolor Effect</button>
             <button id="cartoonizeBtn" class="btn btn-primary">Cartoonize</button>
             <button id="denoiseBtn" class="btn btn-primary">Denoising</button>
-        </div>
-        <div id="buttons" class="mt-3">
             <button id="lensBlurBtn" class="btn btn-primary">Lens Blur</button>
             <button id="motionBlurBtn" class="btn btn-primary">Motion Blur</button>
             <button id="halftoneBtn" class="btn btn-primary">Halftone Effect</button>
             <button id="textureSynthesisBtn" class="btn btn-primary">Texture Synthesis</button>
             <button id="colorTemperatureBtn" class="btn btn-primary">Color Temperature</button>
-        </div>
-        <div id="buttons" class="mt-3">
             <button id="gradientOverlayBtn" class="btn btn-primary">Gradient Overlay</button>
             <button id="retroFilmBtn" class="btn btn-primary">Retro Film Effect</button>
             <button id="underwaterEffectBtn" class="btn btn-primary">Underwater Effect</button>
             <button id="dreamyEffectBtn" class="btn btn-primary">Dreamy Effect</button>
             <button id="glitchEffectBtn" class="btn btn-primary">Glitch Effect</button>
-        </div>
-        <div id="buttons" class="mt-3">
             <button id="fisheyeBtn" class="btn btn-primary">Fisheye</button>
         </div>         
     </div>

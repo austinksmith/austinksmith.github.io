@@ -24,12 +24,15 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function showSpinner(show) {
         const loadingSpinner = document.getElementById('loadingSpinner');
+        const loadingOverlay = document.getElementById('loadingOverlay');
         if (show) {
             loadingSpinner.classList.remove('d-none');
+            loadingOverlay.style.display = 'block';
         } else {
             loadingSpinner.classList.add('d-none');
+            loadingOverlay.style.display = 'none';
         }
-    }
+    }    
 
     function resetImage() {
         if (originalImageData) {
@@ -1554,8 +1557,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     
         ctx.putImageData(imageData, 0, 0);
-    }     
-    
+    }
     
     function applyDreamyEffect() {
         const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
