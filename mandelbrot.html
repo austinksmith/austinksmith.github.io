@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mandelbrot Set</title>
+</head>
+<body>
+  <canvas id="mandelbrotCanvas" width="800" height="600"></canvas>
+  <button id="runButton">Calculate MandelBrot Set</button>
+
+  <script>
+    const canvas = document.getElementById('mandelbrotCanvas');
+    const canvasWidth = canvas.width;
+    const canvasHeight = canvas.height;
+    const context = canvas.getContext('2d');
+    const maxIterations = 10000;
+    let mandelbrotData = [];
+
+    // Define the function to calculate the Mandelbrot set for a single pixel
+    function calculateMandelbrotPixel(x, y, maxIterations, canvasWidth, canvasHeight) {
+        let real = x / canvasWidth * 3.5 - 2.5;
+        let imaginary = y / canvasHeight * 2 - 1;
+        let tempReal, tempImaginary;
+        let iterations = 0;
+
+        while (real * real + imaginary * imaginary <= 4 && iterations < maxIterations) {
+            tempReal = real * real - imaginary * imaginary + x / canvasWidth * 3.5 - 2.5;
+            tempImaginary = 2 * real * imaginary + y / canvasHeight * 2 - 1;
+            real = tempReal;
+            imaginary = tempImaginary;
+            iterations++;
+        }
+
+        return iterations;
+    }
+
+    // Add event listener to handle mouse wheel scrolling for zooming
+    canvas.addEventListener('wheel', function(event) {
+        event.preventDefault(); // Prevent the default page scroll behavior
+        const zoomFactor = event.deltaY > 0 ? 1.1 : 0.9; // Adjust the zoom level based on scroll direction
+        const oldZoomLevel = zoomLevel;
+        zoomLevel *= zoomFactor; // Update the zoom level
+        const offsetX = (event.offsetX - canvasWidth / 2) / (oldZoomLevel * canvasWidth) - viewportX;
+        const offsetY = (event.offsetY - canvasHeight / 2) / (oldZoomLevel * canvasHeight) - viewportY;
+        viewportX -= offsetX * (zoomLevel / oldZoomLevel - 1);
+        viewportY -= offsetY * (zoomLevel / oldZoomLevel - 1);
+
+        // Recalculate and render the Mandelbrot set for the updated viewport
+        renderMandelbrot();
+    });
+
+    function renderMandelbrot() {
+        mandelbrotData = []; // Clear the previous data
+        for (let x = 0; x < canvasWidth; x++) {
+            for (let y = 0; y < canvasHeight; y++) {
+            const iterations = calculateMandelbrotPixel(x, y, maxIterations, canvasWidth, canvasHeight);
+            mandelbrotData.push({ x, y, iterations });
+            }
+        }
+
+        mandelbrotData.forEach(data => {
+            const { x, y, iterations } = data;
+            const color = getColorForIterations(iterations, maxIterations);
+            context.fillStyle = color;
+            context.fillRect(x, y, 1, 1);
+        });
+    }
+
+    function getColorForIterations(iterations, maxIterations) {
+        if (iterations === maxIterations) {
+            return 'black'; // Color for points inside the Mandelbrot set
+        } else {
+            const hue = 240 * (1 - iterations / maxIterations); // Calculate hue based on iterations
+            return `hsl(${hue}, 100%, 50%)`; // Convert hue to HSL color
+        }
+    }
+
+    const runButton = document.getElementById('runButton');
+
+    // Add event listener to the button for re-running the calculation and render
+    runButton.addEventListener('click', function() {
+        context.clearRect(0, 0, canvas.width, canvas.height); // Clear the canvas
+        renderMandelbrot(); // Recalculate and render the Mandelbrot set
+    });
+  </script>
+</body>
+</html>
