@@ -1,0 +1,26 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: lightblue; /* Set background color */
+}
+
+#game-container {
+    position: relative;
+    width: 360px; /* Adjusted to accommodate the border */
+    height: 660px; /* Adjusted to accommodate the border */
+    background: url('textures/stone.png') no-repeat;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#tetris-canvas {
+    width: 100%;
+    height: 100%;
+}
