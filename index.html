@@ -1,66 +1,121 @@
 <!doctype html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9" lang=""> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang=""> <!--<![endif]-->
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <title>Austin Smith - Senior Software Engineer</title>
-        <meta name="description" content="ASMITHDEV - Senior Software Engineer">
-        <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Austin Smith - Senior Software Engineer</title>
+    <meta name="description" content="Portfolio of Austin Smith, Senior Software Engineer with over a decade of experience.">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <link rel="stylesheet" href="css/normalize.min.css">
-        <link rel="stylesheet" href="css/main.css">
-        <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/normalize.min.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
 
-        <!-- Start of Woopra Code -->
-        <script>
-          !function(){var t,o,c,e=window,n=document,r=arguments,a="script",i=["call","cancelAction","config","identify","push","track","trackClick","trackForm","update","visit"],s=function(){var t,o=this,c=function(t){o[t]=function(){return o._e.push([t].concat(Array.prototype.slice.call(arguments,0))),o}};for(o._e=[],t=0;t<i.length;t++)c(i[t])};for(e.__woo=e.__woo||{},t=0;t<r.length;t++)e.__woo[r[t]]=e[r[t]]=e[r[t]]||new s;(o=n.createElement(a)).async=1,o.src="https://static.woopra.com/js/w.js",(c=n.getElementsByTagName(a)[0]).parentNode.insertBefore(o,c)}("woopra");
+    <!-- Social Media Meta Tags -->
+    <meta property="og:title" content="Austin Smith - Senior Software Engineer">
+    <meta property="og:description" content="Portfolio of Austin Smith, Senior Software Engineer.">
+    <meta property="og:image" content="https://avatars.githubusercontent.com/u/2227747">
+    <meta property="og:url" content="https://asmithdev.com">
+    <meta name="twitter:card" content="summary_large_image">
 
-          woopra.config({
+    <!-- Start of Woopra Code -->
+    <script>
+        !function(){var t,o,c,e=window,n=document,r=arguments,a="script",i=["call","cancelAction","config","identify","push","track","trackClick","trackForm","update","visit"],s=function(){var t,o=this,c=function(t){o[t]=function(){return o._e.push([t].concat(Array.prototype.slice.call(arguments,0))),o}};for(o._e=[],t=0;t<i.length;t++)c(i[t])};for(e.__woo=e.__woo||{},t=0;t<r.length;t++)e.__woo[r[t]]=e[r[t]]=e[r[t]]||new s;(o=n.createElement(a)).async=1,o.src="https://static.woopra.com/js/w.js",(c=n.getElementsByTagName(a)[0]).parentNode.insertBefore(o,c)}("woopra");
+
+        woopra.config({
             domain: "asmithdev.com",
             outgoing_tracking: true,
             download_tracking: true,
             click_tracking: true
-          });
-          
-          woopra.track();
-        </script>
-        <!-- End of Woopra Code -->
-    </head>
-    <body>
-        <!--[if lt IE 8]>
-            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-        <![endif]-->
+        });
+        
+        woopra.track();
+    </script>
+    <!-- End of Woopra Code -->
+    <!-- Include Three.js -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            color: #fff;
+        }
+        #background-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+        .header-container {
+            position: relative;
+            padding: 20px;
+            text-align: center;
+        }
+        .site-title {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .site-title img {
+            border-radius: 50%;
+            margin-right: 15px;
+            width: 100px;
+            height: 100px;
+        }
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        nav ul li {
+            display: inline;
+            margin: 0 15px;
+        }
+        .main-container {
+            padding: 40px;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="monitor-canvas"></canvas>
 
-        <div class="header-container">
-            <header class="wrapper clearfix">
+    <!-- Sidebar Section -->
+    <div class="sidebar">
+        <a href="https://www.hamsters.io" target="_blank" class="fa fa-cloud" data-toggle="tooltip" title="Hamsters.io | Parallel Computing"></a>
+        <a href="https://github.com/austinksmith" target="_blank" class="fa fa-github" data-toggle="tooltip" title="View Github Profile"></a>
+        <a href="mailto:austin@asmithdev.com" target="_blank" class="fa fa-envelope-o" data-toggle="tooltip" title="Contact Via Email"></a>
+    </div>
 
-            </header>
-        </div>
+    <!-- Header Section -->
+    <div class="header-container">
+        <header class="wrapper clearfix">
+            <div class="site-title">
+                <img src="https://avatars.githubusercontent.com/u/2227747" alt="Austin Smith Profile Picture">
+                <h1>Austin Smith</h1><br />
+            </div>
+            <h2>Senior Software Engineer</h2>
+        </header>
+    </div>
 
-        <div class="main-container">
-            <div class="main wrapper clearfix">
-                <h1>ASMITHDEV</h1>
-                <h4>Software Engineering Manager & Senior Software Engineer</h4>
-                <p class="main-container">
-                    Welcome!, I am a senior software engineer with over a decade of professional experience.
-                </p>
-                <p class="social-media">
-                    <a href="https://www.hamsters.io" target="_blank" class="fa fa-cloud" data-toggle="tooltip" title="Hamsters.io | Cloud Computing" data-original-title="Hamsters.js"></a>
-                    <a href="https://github.com/austinksmith" target="_blank" class="fa fa-github" data-toggle="tooltip" title="View Github Profile" data-original-title="Gitlab"></a>
-                    <a href="mailto:austin@asmithdev.com" target="_blank" class="fa fa-envelope-o" data-toggle="tooltip" title="Contact Via Email" data-original-title="Email"></a>
-                </p>
-            </div> <!-- #main -->
-        </div> <!-- #main-container -->
+    <!-- Main Content Section -->
+    <div class="main-container">
+        <div class="main wrapper clearfix">
 
-        <div class="footer-container">
-            <footer class="wrapper">
-                &copy 2024
-            </footer>
-        </div>
-        <script src="js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
-        <script src="js/main.js"></script>
-    </body>
+        </div> <!-- .main -->
+    </div> <!-- .main-container -->
+
+    <!-- Footer Section -->
+    <div class="footer-container">
+        <footer class="wrapper">
+            <p>&copy; <span id="year"></span> Austin Smith. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <script>
+        // Set current year dynamically
+        document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+    <script type="text/javascript" src="js/main.js"></script>
+</body>
 </html>
