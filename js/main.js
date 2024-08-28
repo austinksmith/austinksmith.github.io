@@ -36,6 +36,24 @@ const resolutionSettings = {
         top: 'calc(65vh - 80px)',
         left: 'calc(28vw - 80px)'
     },
+    '960x1080': {
+        width: '250px',
+        height: '188px',
+        top: 'calc(65vh - 80px)',
+        left: 'calc(10vw - 80px)'
+    },
+    '885x885': {
+        width: '250px',
+        height: '188px',
+        top: 'calc(65vh - 80px)',
+        left: 'calc(10vw - 80px)'
+    },
+    '885x599': {
+        width: '150px',
+        height: '120px',
+        top: 'calc(60vh - 20px)',
+        left: 'calc(20vw - 20px)'
+    },
     '854x480': {
         width: '150px',
         height: '85px',
@@ -43,14 +61,14 @@ const resolutionSettings = {
         left: 'calc(23vw - 20px)'
     }
 };
+const canvas = document.getElementById('monitor-canvas');
 
+let camera, renderer;
 function applyResolutionSettings() {
     const width = window.screen.width;
     const height = window.screen.height;
     const resolutionKey = `${width}x${height}`;
     const settings = resolutionSettings[resolutionKey] || resolutionSettings['1920x1080'];
-
-    const canvas = document.getElementById('monitor-canvas');
     canvas.style.width = settings.width;
     canvas.style.height = settings.height;
     canvas.style.top = settings.top;
@@ -58,13 +76,12 @@ function applyResolutionSettings() {
 }
 
 function initThreeJS() {
-    const canvas = document.getElementById('monitor-canvas');
     const scene = new THREE.Scene();
 
-    const camera = new THREE.PerspectiveCamera(75, canvas.clientWidth / canvas.clientHeight, 0.1, 1000);
+    camera = new THREE.PerspectiveCamera(75, canvas.clientWidth / canvas.clientHeight, 0.1, 1000);
     camera.position.z = 5;
 
-    const renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true });
+    renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true });
     renderer.setSize(canvas.clientWidth, canvas.clientHeight);
 
     const geometry = new THREE.BoxGeometry();
@@ -86,8 +103,17 @@ function initThreeJS() {
 applyResolutionSettings();
 initThreeJS();
 
-// Adjust canvas size on window resize
 window.addEventListener('resize', () => {
     applyResolutionSettings();
-    initThreeJS();
+    
+    // Update camera aspect ratio
+    camera.aspect = canvas.width / canvas.height;
+    camera.updateProjectionMatrix();
+
+    // Update renderer size
+    renderer.setSize(canvas.width, canvas.height);
+
+    // Log the camera and renderer sizes for debugging
+    console.log(`Camera aspect: ${camera.aspect}`);
+    console.log(`Renderer size: ${canvas.width}x${canvas.height}`);
 });
