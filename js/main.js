@@ -67,6 +67,36 @@ const resolutionSettings = {
         left: 'calc(23vw - 20px)'
     }
 };
+
+function applyResolutionSettings() {
+    const width = window.screen.width;
+    const height = window.screen.height;
+    const resolutionKey = `${width}x${height}`;
+    const settings = resolutionSettings[resolutionKey] || approximateSettings(width, height);
+    canvas.style.width = settings.width;
+    canvas.style.height = settings.height;
+    canvas.style.top = settings.top;
+    canvas.style.left = settings.left;
+}
+
+function approximateSettings(width, height) {
+    let closestKey = null;
+    let closestDistance = Infinity;
+
+    for (const key in resolutionSettings) {
+        const [keyWidth, keyHeight] = key.split('x').map(Number);
+        const distance = Math.sqrt(Math.pow(keyWidth - width, 2) + Math.pow(keyHeight - height, 2));
+
+        if (distance < closestDistance) {
+            closestDistance = distance;
+            closestKey = key;
+        }
+    }
+
+    console.log(`No exact match found for ${width}x${height}. Closest match is ${closestKey}`);
+    return resolutionSettings[closestKey];
+}
+
 const canvas = document.getElementById('monitor-canvas');
 
 let camera, renderer;
