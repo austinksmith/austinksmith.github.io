@@ -46,7 +46,7 @@ const resolutionSettings = {
         width: '250px',
         height: '188px',
         top: 'calc(65vh - 80px)',
-        left: 'calc(-8vw - 80px)'
+        left: 'calc(7vw - 80px)'
     },
     '885x885': {
         width: '250px',
