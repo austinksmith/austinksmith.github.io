@@ -42,6 +42,12 @@ const resolutionSettings = {
         top: 'calc(65vh - 80px)',
         left: 'calc(10vw - 80px)'
     },
+    '925x972': {
+        width: '250px',
+        height: '188px',
+        top: 'calc(56vh - 80px)',
+        left: 'calc(-2vw - 80px)'
+    },
     '885x885': {
         width: '250px',
         height: '188px',
