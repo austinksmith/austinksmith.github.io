@@ -68,6 +68,10 @@ const resolutionSettings = {
     }
 };
 
+const canvas = document.getElementById('monitor-canvas');
+
+let camera, renderer;
+
 function applyResolutionSettings() {
     const width = window.screen.width;
     const height = window.screen.height;
@@ -95,20 +99,6 @@ function approximateSettings(width, height) {
 
     console.log(`No exact match found for ${width}x${height}. Closest match is ${closestKey}`);
     return resolutionSettings[closestKey];
-}
-
-const canvas = document.getElementById('monitor-canvas');
-
-let camera, renderer;
-function applyResolutionSettings() {
-    const width = window.screen.width;
-    const height = window.screen.height;
-    const resolutionKey = `${width}x${height}`;
-    const settings = resolutionSettings[resolutionKey] || resolutionSettings['1920x1080'];
-    canvas.style.width = settings.width;
-    canvas.style.height = settings.height;
-    canvas.style.top = settings.top;
-    canvas.style.left = settings.left;
 }
 
 function initThreeJS() {
