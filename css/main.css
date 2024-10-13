@@ -54,6 +54,8 @@ textarea {
 body {
     background: #272823 url("../img/background.jpg") no-repeat center center fixed;
     background-size: cover;
+    background-attachment: fixed;
+    background-position: bottom left;
     color: #fff;
     font-family: 'Arvo', serif;
     line-height: 1.4;
