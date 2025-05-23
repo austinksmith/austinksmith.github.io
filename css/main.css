@@ -52,8 +52,8 @@ textarea {
 
 /* General body styles */
 body {
-    background: #272823 url("../img/background.jpg") no-repeat center center fixed;
-    background-size: cover;
+    background: #272823 url("../img/I_dont_consent.svg") no-repeat center center fixed;
+    background-size: contain;
     background-attachment: fixed;
     background-position: bottom left;
     color: #fff;

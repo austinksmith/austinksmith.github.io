@@ -1,0 +1,49 @@
+<svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background circle for contrast -->
+  <circle cx="200" cy="150" r="140" fill="none" stroke="#333" stroke-width="2" opacity="0.3"/>
+  
+  <!-- Main text "I DON'T CONSENT" -->
+  <text x="200" y="100" text-anchor="middle" font-family="Arial Black, sans-serif" font-size="28" font-weight="900" fill="#000" letter-spacing="2px">
+    I DON'T
+  </text>
+  <text x="200" y="135" text-anchor="middle" font-family="Arial Black, sans-serif" font-size="32" font-weight="900" fill="#000" letter-spacing="2px">
+    CONSENT
+  </text>
+  
+  <!-- Christian Cross -->
+  <g transform="translate(200, 180)">
+    <!-- Vertical beam -->
+    <rect x="-4" y="-15" width="8" height="40" fill="#000"/>
+    <!-- Horizontal beam -->
+    <rect x="-15" y="-4" width="30" height="8" fill="#000"/>
+    <!-- Cross outline for definition -->
+    <rect x="-4" y="-15" width="8" height="40" fill="none" stroke="#666" stroke-width="0.5"/>
+    <rect x="-15" y="-4" width="30" height="8" fill="none" stroke="#666" stroke-width="0.5"/>
+  </g>
+  
+  <!-- Bible verse reference -->
+  <text x="200" y="240" text-anchor="middle" font-family="Georgia, serif" font-size="18" font-weight="bold" fill="#000" font-style="italic">
+    Hosea 4:6
+  </text>
+  
+  <!-- Decorative elements -->
+  <g opacity="0.6">
+    <!-- Left flourish -->
+    <path d="M 80 150 Q 90 140, 100 150 Q 90 160, 80 150" fill="#333"/>
+    <!-- Right flourish -->
+    <path d="M 320 150 Q 310 140, 300 150 Q 310 160, 320 150" fill="#333"/>
+  </g>
+  
+  <!-- Subtle drop shadow effect -->
+  <defs>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="2" dy="2" stdDeviation="1" flood-color="#000" flood-opacity="0.2"/>
+    </filter>
+  </defs>
+  
+  <!-- Apply shadow to main elements -->
+  <style>
+    text { filter: url(#shadow); }
+    .cross { filter: url(#shadow); }
+  </style>
+</svg>
