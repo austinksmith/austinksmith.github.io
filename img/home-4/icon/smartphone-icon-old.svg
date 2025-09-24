@@ -1,0 +1,32 @@
+<svg id="Capa_1" data-name="Capa 1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="35.7" height="63" viewBox="0 0 35.7 63">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: url(#New_Gradient_Swatch);
+      }
+
+      .cls-2 {
+        fill: url(#New_Gradient_Swatch-3);
+      }
+
+      .cls-3 {
+        fill: url(#New_Gradient_Swatch-4);
+      }
+    </style>
+    <linearGradient id="New_Gradient_Swatch" data-name="New Gradient Swatch" x1="238.04" y1="283.3" x2="276.18" y2="283.3" gradientTransform="matrix(1, 0, 0, -1, 0, 512)" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#1764e3"/>
+      <stop offset="1" stop-color="#02d9f5"/>
+    </linearGradient>
+    <linearGradient id="New_Gradient_Swatch-3" x1="238.04" y1="230.8" x2="276.18" y2="230.8" xlink:href="#New_Gradient_Swatch"/>
+    <linearGradient id="New_Gradient_Swatch-4" x1="238.04" y1="256" x2="276.18" y2="256" xlink:href="#New_Gradient_Swatch"/>
+  </defs>
+  <title>smartphone-icon-2</title>
+  <g>
+    <g>
+      <path class="cls-1" d="M250.75,229.75h10.5a1,1,0,1,0,0-2.1h-10.5a1.05,1.05,0,1,0,0,2.1Z" transform="translate(-238.15 -224.5)"/>
+      <path class="cls-1" d="M267.55,229.75h1.05a1.05,1.05,0,0,0,0-2.1h-1.05a1.05,1.05,0,1,0,0,2.1Z" transform="translate(-238.15 -224.5)"/>
+    </g>
+    <path class="cls-2" d="M257.3,278.05h-2.6a2.9,2.9,0,0,0-2.9,2.9v.5a2.9,2.9,0,0,0,2.9,2.9h2.6a2.9,2.9,0,0,0,2.9-2.9V281A2.9,2.9,0,0,0,257.3,278.05Zm.8,3.4a.8.8,0,0,1-.8.8h-2.6a.8.8,0,0,1-.8-.8V281a.8.8,0,0,1,.8-.8h2.6a.8.8,0,0,1,.8.8Z" transform="translate(-238.15 -224.5)"/>
+    <path class="cls-3" d="M273.85,231.85h0V228.3a3.8,3.8,0,0,0-3.79-3.8H242a3.8,3.8,0,0,0-3.8,3.8v55.4a3.8,3.8,0,0,0,3.8,3.8h28.1a3.8,3.8,0,0,0,3.8-3.79V276h0Zm-33.6,1.05h31.5v42h-31.5Zm1.7-6.3h28.1a1.7,1.7,0,0,1,1.7,1.7v2.5h-31.5v-2.5A1.7,1.7,0,0,1,242,226.6Zm28.11,58.8H242a1.7,1.7,0,0,1-1.7-1.69V277h31.5v6.71h0A1.69,1.69,0,0,1,270.06,285.4Z" transform="translate(-238.15 -224.5)"/>
+  </g>
+</svg>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="Capa_1" data-name="Capa 1" width="75" height="67" viewBox="0 0 75 67">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: url(#linear-gradient);
+      }
+
+      .cls-2 {
+        fill: url(#linear-gradient-3);
+      }
+
+      .cls-3 {
+        fill: url(#linear-gradient-4);
+      }
+    </style>
+    <linearGradient id="linear-gradient" x1="256.8" y1="76.97" x2="296.83" y2="76.97" gradientTransform="translate(-238.15 -72.5)" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#1764e3"></stop>
+      <stop offset="1" stop-color="#02d9f5"></stop>
+    </linearGradient>
+    <linearGradient id="linear-gradient-3" x1="256.8" y1="132.8" x2="296.83" y2="132.8" xlink:href="#linear-gradient"></linearGradient>
+    <linearGradient id="linear-gradient-4" x1="256.8" y1="106" x2="296.83" y2="106" xlink:href="#linear-gradient"></linearGradient>
+  </defs>
+  <title>smartphone-icon-75x67-normal</title>
+  <g>
+    <g>
+      <path class="cls-1" d="M32,5.58H43a1.12,1.12,0,0,0,0-2.23H32a1.12,1.12,0,0,0,0,2.23Z"></path>
+      <path class="cls-1" d="M49.62,5.58h1.1a1.12,1.12,0,0,0,0-2.23h-1.1a1.12,1.12,0,0,0,0,2.23Z"></path>
+    </g>
+    <path class="cls-2" d="M38.86,57H36.13a3.06,3.06,0,0,0-3,3.08v.54a3.06,3.06,0,0,0,3,3.08h2.73a3.07,3.07,0,0,0,3-3.08v-.48a3.07,3.07,0,0,0-3-3.14Zm.84,3.62a.84.84,0,0,1-.84.85H36.13a.85.85,0,0,1-.84-.85v-.48a.85.85,0,0,1,.84-.85h2.73a.84.84,0,0,1,.84.85Z"></path>
+    <path class="cls-3" d="M56.23,7.82h0V4a4,4,0,0,0-4-4H22.8a4,4,0,0,0-4,4h0V63a4,4,0,0,0,4,4H52.3a4,4,0,0,0,4-4v-8.2h0ZM21,8.93H54V53.6H21Zm1.78-6.7H52.24A1.8,1.8,0,0,1,54,4h0V6.7H21V4a1.79,1.79,0,0,1,1.78-1.81h0Zm29.5,62.54H22.8A1.8,1.8,0,0,1,21,63V55.83H54.08V63h0a1.79,1.79,0,0,1-1.77,1.8Z"></path>
+  </g>
+</svg>

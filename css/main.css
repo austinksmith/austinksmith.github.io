@@ -52,20 +52,16 @@ textarea {
 
 /* General body styles */
 body {
-    background: #fff url("../img/I_dont_consent.svg") no-repeat center center fixed;
-    background-size: contain;
+    background: #272823 url("../img/background.jpg") no-repeat center center fixed;
+    background-size: cover;
     background-attachment: fixed;
     background-position: bottom left;
-    color: #272823;
+    color: #fff;
     font-family: 'Arvo', serif;
     line-height: 1.4;
     margin: 0;
     position: relative;
     overflow: hidden !important;
-}
-
-h2 {
-   color: #272823;
 }
 
 #monitor-canvas {

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="Capa_1" data-name="Capa 1" width="37.5" height="67" viewBox="0 0 37.5 67">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: url(#linear-gradient);
+      }
+
+      .cls-2 {
+        fill: url(#linear-gradient-3);
+      }
+
+      .cls-3 {
+        fill: url(#linear-gradient-4);
+      }
+    </style>
+    <linearGradient id="linear-gradient" x1="238.1" y1="-8.96" x2="278.13" y2="-8.96" gradientTransform="matrix(1, 0, 0, -1, -238.15, -4.5)" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#1764e3"></stop>
+      <stop offset="1" stop-color="#02d9f5"></stop>
+    </linearGradient>
+    <linearGradient id="linear-gradient-3" x1="238.1" y1="-64.85" x2="278.13" y2="-64.85" xlink:href="#linear-gradient"></linearGradient>
+    <linearGradient id="linear-gradient-4" x1="238.1" y1="-38" x2="278.13" y2="-38" xlink:href="#linear-gradient"></linearGradient>
+  </defs>
+  <title>smartphone-icon-67px</title>
+  <g>
+    <g>
+      <path class="cls-1" d="M13.3,5.58h11a1.12,1.12,0,0,0,0-2.23h-11a1.12,1.12,0,0,0,0,2.23Z" transform="translate(-0.1)"></path>
+      <path class="cls-1" d="M30.92,5.58H32a1.12,1.12,0,0,0,0-2.23h-1.1a1.12,1.12,0,0,0,0,2.23Z" transform="translate(-0.1)"></path>
+    </g>
+    <path class="cls-2" d="M20.16,57H17.43a3.06,3.06,0,0,0-3,3.08v.54a3.06,3.06,0,0,0,3,3.08h2.73a3.07,3.07,0,0,0,3-3.08v-.48a3.07,3.07,0,0,0-3-3.14ZM21,60.62a.85.85,0,0,1-.83.85H17.43a.85.85,0,0,1-.84-.85v-.48a.85.85,0,0,1,.84-.85h2.73a.85.85,0,0,1,.84.84h0Z" transform="translate(-0.1)"></path>
+    <path class="cls-3" d="M37.53,7.82h0V4a4,4,0,0,0-4-4H4.1a4,4,0,0,0-4,4h0V63a4,4,0,0,0,4,4H33.6a4,4,0,0,0,4-4V54.8h0ZM2.3,8.93h33V53.6H2.3Zm1.78-6.7H33.54A1.8,1.8,0,0,1,35.3,4h0V6.7H2.3V4A1.79,1.79,0,0,1,4.07,2.19h0Zm29.5,62.54H4.1A1.81,1.81,0,0,1,2.3,63V55.83H35.38V63h0a1.79,1.79,0,0,1-1.77,1.8Z" transform="translate(-0.1)"></path>
+  </g>
+</svg>

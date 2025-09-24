@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="Capa_1" data-name="Capa 1" width="74.9" height="67" viewBox="0 0 74.9 67">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: url(#linear-gradient);
+      }
+
+      .cls-2 {
+        fill: url(#linear-gradient-3);
+      }
+
+      .cls-3 {
+        fill: url(#linear-gradient-4);
+      }
+    </style>
+    <linearGradient id="linear-gradient" x1="237.95" y1="-8.96" x2="317.9" y2="-8.96" gradientTransform="matrix(1, 0, 0, -1, -238.15, -4.5)" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#1764e3"></stop>
+      <stop offset="1" stop-color="#02d9f5"></stop>
+    </linearGradient>
+    <linearGradient id="linear-gradient-3" x1="237.95" y1="-64.85" x2="317.9" y2="-64.85" xlink:href="#linear-gradient"></linearGradient>
+    <linearGradient id="linear-gradient-4" x1="237.95" y1="-38" x2="317.9" y2="-38" xlink:href="#linear-gradient"></linearGradient>
+  </defs>
+  <title>smartphone-icon-75x67-stretched</title>
+  <g>
+    <g>
+      <path class="cls-1" d="M26.46,5.58h22c1.23-.06,2.13-.6,2-1.22s-1-1-2-1h-22c-1.23.06-2.13.6-2,1.22S25.4,5.53,26.46,5.58Z" transform="translate(-0.1)"></path>
+      <path class="cls-1" d="M61.66,5.58h2.19c1.23-.06,2.14-.6,2-1.22s-1-1-2-1H61.66c-1.23.06-2.13.6-2,1.22S60.59,5.53,61.66,5.58Z" transform="translate(-0.1)"></path>
+    </g>
+    <path class="cls-2" d="M40.17,57H34.71c-3.34,0-6,1.41-6,3.08v.54c0,1.67,2.65,3.05,6,3.08h5.46c3.34,0,6-1.41,6-3.08v-.48c.08-1.7-2.6-3.1-6-3.14Zm1.67,3.62c0,.46-.73.84-1.65.85H34.71c-.93,0-1.67-.38-1.67-.85v-.48c0-.47.74-.84,1.67-.85h5.46c.92,0,1.67.38,1.67.84h0Z" transform="translate(-0.1)"></path>
+    <path class="cls-3" d="M74.86,7.82h0V4c0-2.21-3.58-4-8-4H8.09C3.68,0,.1,1.79.1,4h0V63c0,2.21,3.58,4,8,4H67c4.41,0,8-1.79,8-4V54.8h0ZM4.49,8.93H70.41V53.6H4.49Zm3.56-6.7H66.89c1.93,0,3.48.8,3.52,1.77h0V6.7H4.49V4C4.47,3,6.05,2.2,8,2.19h0ZM67,64.77H8.09c-2,0-3.56-.79-3.6-1.77V55.83H70.57V63h0c0,1-1.57,1.79-3.54,1.8Z" transform="translate(-0.1)"></path>
+  </g>
+</svg>

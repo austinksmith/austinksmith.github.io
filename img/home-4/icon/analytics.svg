@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="Layer_1" data-name="Layer 1" width="66.52" height="66.58" viewBox="0 0 66.52 66.58">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: url(#linear-gradient);
+      }
+
+      .cls-2 {
+        fill: url(#linear-gradient-2);
+      }
+
+      .cls-3 {
+        fill: url(#linear-gradient-3);
+      }
+
+      .cls-4 {
+        fill: url(#linear-gradient-4);
+      }
+
+      .cls-5 {
+        fill: url(#linear-gradient-5);
+      }
+
+      .cls-6 {
+        fill: url(#linear-gradient-6);
+      }
+    </style>
+    <linearGradient id="linear-gradient" x1="222.81" y1="-51.75" x2="288.23" y2="-51.75" gradientTransform="matrix(1, 0, 0, -1, -223.04, -4.57)" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#1764e3"></stop>
+      <stop offset="1" stop-color="#02d9f5"></stop>
+    </linearGradient>
+    <linearGradient id="linear-gradient-2" x1="222.81" y1="-54.14" x2="288.23" y2="-54.14" xlink:href="#linear-gradient"></linearGradient>
+    <linearGradient id="linear-gradient-3" x1="222.81" y1="-48.75" x2="288.23" y2="-48.75" xlink:href="#linear-gradient"></linearGradient>
+    <linearGradient id="linear-gradient-4" x1="222.81" y1="-52.37" x2="288.23" y2="-52.37" xlink:href="#linear-gradient"></linearGradient>
+    <linearGradient id="linear-gradient-5" x1="222.81" y1="-21.86" x2="288.23" y2="-21.86" xlink:href="#linear-gradient"></linearGradient>
+    <linearGradient id="linear-gradient-6" x1="222.81" y1="-38.02" x2="288.23" y2="-38.02" xlink:href="#linear-gradient"></linearGradient>
+  </defs>
+  <title>analytics-rgb-67px</title>
+  <g>
+    <path class="cls-1" d="M17.59,33.79H9.73A.72.72,0,0,0,9,34.5H9V60a.72.72,0,0,0,.72.72h7.86a.72.72,0,0,0,.72-.72h0V34.46A.72.72,0,0,0,17.59,33.79Zm-2.32,24.6H12.05a.72.72,0,0,1-.72-.72h0V36.81a.72.72,0,0,1,.72-.71h3.22a.72.72,0,0,1,.72.71h0V57.67a.72.72,0,0,1-.72.72Z" transform="translate(-0.21 -0.21)"></path>
+    <path class="cls-2" d="M33.14,38.56H25.26a.72.72,0,0,0-.72.72h0V60a.72.72,0,0,0,.72.72h7.85a.72.72,0,0,0,.72-.72h0V39.28A.72.72,0,0,0,33.14,38.56ZM30.82,58.39H27.61a.72.72,0,0,1-.72-.72h0V41.59a.72.72,0,0,1,.72-.72h3.21a.72.72,0,0,1,.72.72h0V57.67a.72.72,0,0,1-.72.72Z" transform="translate(-0.21 -0.21)"></path>
+    <path class="cls-3" d="M48.58,27.77H40.73a.72.72,0,0,0-.72.72h0V60a.72.72,0,0,0,.72.72h7.85A.72.72,0,0,0,49.3,60h0V28.49A.72.72,0,0,0,48.58,27.77ZM46.26,58.39H43.05a.72.72,0,0,1-.72-.72h0V30.8a.72.72,0,0,1,.72-.72h3.21a.72.72,0,0,1,.72.72h0V57.67a.72.72,0,0,1-.72.72Z" transform="translate(-0.21 -0.21)"></path>
+    <path class="cls-4" d="M63.91,35H56.05a.73.73,0,0,0-.72.72h0V60a.72.72,0,0,0,.72.72h7.86a.72.72,0,0,0,.72-.72h0V35.74a.73.73,0,0,0-.72-.72ZM61.59,58.39H58.37a.72.72,0,0,1-.72-.72h0V38.05a.73.73,0,0,1,.72-.72h3.22a.73.73,0,0,1,.72.72h0V57.67a.72.72,0,0,1-.72.72Z" transform="translate(-0.21 -0.21)"></path>
+    <path class="cls-5" d="M13.81,20.2a4.85,4.85,0,0,0,3.85-1.94l10.88,5.43a4.52,4.52,0,0,0,0,1.64,4.41,4.41,0,0,0,8.71-1.4,4.27,4.27,0,0,0-.73-1.82l6.25-7.9a4.67,4.67,0,0,0,2.39.66,4.6,4.6,0,0,0,3.47-1.57l7.07,5a4.56,4.56,0,0,0-.26,2.45,4.66,4.66,0,1,0,3.86-5.35,4.73,4.73,0,0,0-2.23,1l-7.36-5.2a4.59,4.59,0,0,0,.1-1,4.65,4.65,0,0,0-9.26-.58,4.56,4.56,0,0,0,.58,2.89L34.7,20.61a4.45,4.45,0,0,0-5.1,1L18.53,16.13a2.53,2.53,0,0,0,0-.55,4.75,4.75,0,1,0-4.87,4.63h.15Zm45.62-2.38a2.33,2.33,0,1,1-1.68,2.93A2.35,2.35,0,0,1,57.89,19a2.15,2.15,0,0,1,1.54-1.22ZM44.67,8.06a2.32,2.32,0,1,1-1.82,1.82A2.32,2.32,0,0,1,44.67,8.06Zm-12,14.56a2.08,2.08,0,1,1-1.89,2.25,2,2,0,0,1,0-.35,2.09,2.09,0,0,1,1.89-1.88ZM14.2,13.26A2.5,2.5,0,0,1,16.15,15a2.42,2.42,0,0,1-4.8.67s0-.1,0-.14a2.41,2.41,0,0,1,2.45-2.34,3,3,0,0,1,.42,0Z" transform="translate(-0.21 -0.21)"></path>
+    <path class="cls-6" d="M65.22,63.73H3.27V1.78A1.56,1.56,0,0,0,2.11.25,1.53,1.53,0,0,0,.26,1.37a1.57,1.57,0,0,0-.05.37V65.26a1.54,1.54,0,0,0,1.53,1.53H65.21a1.55,1.55,0,0,0,1.53-1.55,2.09,2.09,0,0,0,0-.35,1.56,1.56,0,0,0-1.53-1.16Z" transform="translate(-0.21 -0.21)"></path>
+  </g>
+</svg>
