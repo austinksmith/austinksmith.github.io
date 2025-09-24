@@ -633,15 +633,15 @@
     });
 
     $('#play-audio-button-iu').on('click', () => {
-        loadAACSound('airdrop/IU.m4a'); // Assuming it's actually AAC, not WMV
+        loadAACSound(window.location.origin + 'airdrop/IU.m4a'); // Assuming it's actually AAC, not WMV
     });
 
     $('#play-audio-button-additional').on('click', () => {
-        loadAACSound('airdrop/sherrifs_office.m4a'); // Assuming it's actually AAC, not WMV
+        loadAACSound(window.location.origin + '/airdrop/sherrifs_office.m4a'); // Assuming it's actually AAC, not WMV
     });
 
     $('#play-audio-button-threateningachild').on('click', () => {
-        loadAACSound('airdrop/clip_0004.aac'); // Assuming it's actually AAC, not WMV
+        loadAACSound(window.location.origin + '/airdrop/clip_0004.aac'); // Assuming it's actually AAC, not WMV
     });
 
     $('#stop-audio-button-threateningachild').on('click', () => {
